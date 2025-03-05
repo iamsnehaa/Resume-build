@@ -1,70 +1,37 @@
-// script.js 
+document.getElementById("generate-btn").addEventListener("click", function() {
+    // Get user inputs
+    document.getElementById("r-name").innerText = document.getElementById("name").value;
+    document.getElementById("r-title").innerText = document.getElementById("title").value;
+    document.getElementById("r-summary").innerText = document.getElementById("summary").value;
+    document.getElementById("r-experience").innerText = document.getElementById("experience").value;
+    document.getElementById("r-education").innerText = document.getElementById("education").value;
+    document.getElementById("r-skills").innerText = document.getElementById("skills").value;
+    document.getElementById("r-projects").innerText = document.getElementById("projects").value;
+    document.getElementById("r-contact").innerText = document.getElementById("contact").value;
 
-// Taking elements from HTML 
-const inputField = document.querySelector(".inputField"); 
-const main = document.querySelector(".resume-builder"); 
-const outputContainer = document.querySelector(".output_container"); 
+    // Show resume preview and hide form
+    document.getElementById("form-container").style.display = "none";
+    document.getElementById("resume-container").style.display = "block";
+});
 
-let isHidden = true; 
+document.getElementById("edit-btn").addEventListener("click", function() {
+    document.getElementById("form-container").style.display = "block";
+    document.getElementById("resume-container").style.display = "none";
+});
 
-// Function to toggle between input form and resume preview 
-function hide() { 
-	if (isHidden) { 
-	
-		// Hide the input form and show the resume preview 
-		main.style.display = "none"; 
-		isHidden = false; 
+// PDF Download Functionality
+document.getElementById("download-btn").addEventListener("click", function() {
+    const { jsPDF } = window.jspdf;
+    let doc = new jsPDF();
 
-		outputContainer.style.display = "block"; 
-		outputContainer.innerHTML = ` 
-			<div class="output"> 
-				<div class="heading"> 
-					<h1>${inputField["name"].value}</h1> 
-					<h4>${inputField["title"].value}</h4> 
-				</div> 
-				<div class="info"> 
-					<div class="left"> 
-						<div class="box"> 
-							<h2>Objective</h2> 
-							<p>${inputField["objective"].value}</p> 
-						</div> 
-						<div class="box"> 
-							<h2>Skills</h2> 
-							<p>${inputField["skills"].value}</p> 
-						</div> 
-						<div class="box"> 
-							<h2>Academic Details</h2> 
-							<p>${inputField["academic_details"].value}</p> 
-						</div> 
-						<div class="box"> 
-							<h2>Contact</h2> 
-							<p>${inputField["contact"].value}</p> 
-						</div> 
-					</div> 
-					<div class="right"> 
-						<div class="box"> 
-							<h2>Work Experience</h2> 
-							<p>${inputField["work_experience"].value}</p> 
-						</div> 
-						<div class="box"> 
-							<h2>Achievements</h2> 
-							<p>${inputField["achievements"].value}</p> 
-						</div> 
-						<div class="box"> 
-							<h2>Projects</h2> 
-							<p>${inputField["projects"].value}</p> 
-						</div> 
-					</div> 
-				</div> 
-			</div> 
-			<button onclick="print()">Print Resume</button> 
-		`; 
-	} else { 
-		// Show the input form and hide the resume preview 
-		main.style.display = "block"; 
-		isHidden = true; 
+    doc.text(`Name: ${document.getElementById("r-name").innerText}`, 10, 10);
+    doc.text(`Title: ${document.getElementById("r-title").innerText}`, 10, 20);
+    doc.text(`Summary: ${document.getElementById("r-summary").innerText}`, 10, 30);
+    doc.text(`Work Experience: ${document.getElementById("r-experience").innerText}`, 10, 40);
+    doc.text(`Education: ${document.getElementById("r-education").innerText}`, 10, 50);
+    doc.text(`Skills: ${document.getElementById("r-skills").innerText}`, 10, 60);
+    doc.text(`Projects: ${document.getElementById("r-projects").innerText}`, 10, 70);
+    doc.text(`Contact: ${document.getElementById("r-contact").innerText}`, 10, 80);
 
-		outputContainer.style.display = "none"; 
-		outputContainer.innerHTML = ""; 
-	} 
-}
+    doc.save("resume.pdf");
+});

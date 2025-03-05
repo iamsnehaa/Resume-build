@@ -1,93 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<!DOCTYPE html> 
-<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Resume Builder</title>
+    <link rel="stylesheet" href="resume.css">
+</head>
 
-<head> 
-	<meta charset="UTF-8" /> 
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-	<title>Resume Creator</title> 
-	
-	<link rel="stylesheet" href="resume.css" /> 
-</head> 
+<body>
+    <div class="container">
+        <h1>ATS Resume Builder</h1>
 
-<body> 
+        <!-- Form Section -->
+        <div id="form-container">
+            <form id="resume-form">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="text" id="title" placeholder="Job Title" required>
+                <textarea id="summary" placeholder="Professional Summary" required></textarea>
+                <textarea id="experience" placeholder="Work Experience" required></textarea>
+                <textarea id="education" placeholder="Education" required></textarea>
+                <textarea id="skills" placeholder="Skills (comma-separated)" required></textarea>
+                <textarea id="projects" placeholder="Projects" required></textarea>
+                <textarea id="contact" placeholder="Contact Information" required></textarea>
 
-	<section class="resume-builder"> 
-		<div class="container"> 
-			<h1>Resume Creator</h1> 
-			<div class="resume_container"> 
-				<form class="inputField"> 
-					<input type="text"
-						name="name"
-						placeholder="Your Name"
-						title="Enter Your Name" /> 
-					<input type="text"
-						name="title"
-						placeholder="Title/Sub Heading"
-						title="Enter Title/Sub Heading" /> 
-					<textarea name="work_experience"
-							placeholder="Work Experience"
-							cols="40" rows="3"
-							title="Enter Your Work Experience"> 
-					</textarea> 
-					<textarea name="academic_details"
-							placeholder="Academic Details"
-							cols="40" rows="3"
-							title="Enter Your Academic Details"> 
-					</textarea> 
-					<input type="text" placeholder="Objective"
-						title="Enter Your Objective"
-						name="objective" /> 
-					<textarea name="skills"
-							title="Enter Your Skills"
-							placeholder="Skills" cols="40"
-							rows="3"> 
-					</textarea> 
-					<textarea name="projects"
-							title="Enter Your Projects"
-							placeholder="Projects"
-							cols="40"
-							rows="3"> 
-					</textarea> 
-					<textarea name="achievements"
-							placeholder="Achievements"
-							cols="40" rows="3"
-							title="Enter Your Achievements"> 
-					</textarea> 
-					<textarea name="contact"
-							placeholder="Contact Information"
-							cols="40" rows="3"
-							title="Enter Your Contact Information"> 
-					</textarea> 
-				</form> 
-			</div> 
-			<p class="credit"> 
-				Created by 
-				<a href= 
-"https://auth.geeksforgeeks.org/user/lunatic1/articles"
-				target="_blank"> 
-					lunatic1 
-				</a> 
-			</p> 
-			<p class="tip"> 
-				**You can use markup in the text area for text decoration** 
-			</p> 
-		</div> 
-	</section> 
-	
+                <button type="button" id="generate-btn">Generate Resume</button>
+            </form>
+        </div>
 
-	
-	<div class="output_container"></div> 
-	
+        <!-- Resume Preview Section -->
+        <div id="resume-container" style="display: none;">
+            <div id="resume-output">
+                <h2 id="r-name"></h2>
+                <h3 id="r-title"></h3>
+                <p id="r-summary"></p>
 
-	
-	<button onclick="hide()"> 
-		Generate / Edit 
-	</button> 
+                <h3>Work Experience</h3>
+                <p id="r-experience"></p>
 
-	
-	<script src="resume.js"></script> 
-</body> 
+                <h3>Education</h3>
+                <p id="r-education"></p>
+
+                <h3>Skills</h3>
+                <p id="r-skills"></p>
+
+                <h3>Projects</h3>
+                <p id="r-projects"></p>
+
+                <h3>Contact</h3>
+                <p id="r-contact"></p>
+            </div>
+
+            <button id="edit-btn">Edit</button>
+            <button id="download-btn">Download as PDF</button>
+        </div>
+    </div>
+
+    <script src="resume.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</body>
 
 </html>
